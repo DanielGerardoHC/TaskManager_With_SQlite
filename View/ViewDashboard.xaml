@@ -1,0 +1,230 @@
+﻿<UserControl x:Class="AdministradorDeTareas.View.TaskManagment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AdministradorDeTareas.View"
+             xmlns:viewModel="clr-namespace:AdministradorDeTareas.ViewModel"
+             mc:Ignorable="d"
+             Background="#2B1380"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             d:DesignHeight="536.05" d:DesignWidth="1200">
+    <UserControl.DataContext>
+        <viewModel:ViewModelDashBoard/>
+    </UserControl.DataContext>
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto">
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border 
+                HorizontalAlignment="Left"
+                Margin="8"
+                CornerRadius="12"
+                Width="370"
+                Height="220"
+                Style="{StaticResource panelControl}">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#5bc3ff" Offset="1"/>
+                        <GradientStop Color="#3aaBFF" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel>
+                    <TextBlock Text="Empower your productivity&#x0a;one task at a time" 
+                               Margin="15,0,0,0" 
+                               Foreground="White"
+                               FontSize="28"/>
+                    <TextBlock/>
+                    <TextBlock Text="Maximize productivity with ease&#x0a;Manage tasks effortlessly" 
+                               Margin="15,0,0,0" 
+                               Foreground="White"
+                               FontSize="15"/>
+                    <Image Source="\images\checking.png"
+                           Width="212"
+                           HorizontalAlignment="Right"
+                           Height="98" RenderTransformOrigin="0.5,0.5"
+                           >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.493"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock/>
+                </StackPanel>
+            </Border>
+            <Border  Margin="8"
+                     HorizontalAlignment="Right"
+                    CornerRadius="12"
+                    Width="370"
+                    Height="220"
+                    Background="#1d659c"
+                    Style="{StaticResource panelControl}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Pending Tasks"
+                               Margin="15,0,0,0"
+                               FontSize="30"
+                               Foreground="White"/>
+                    <ListBox
+                        ItemsSource="{Binding Path=PendingTasks}" 
+                        SelectionMode="Extended"
+                        BorderBrush="Transparent"
+                        Background="Transparent" 
+                        d:ItemsSource="{d:SampleData ItemCount=3}"
+                        IsHitTestVisible="False">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="15,0,0,0"
+                                       FontSize="16"
+                                       Foreground="White"
+                                       Text="{Binding Path=Title}">
+                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:IconImage Icon="Clock"
+                                                  Foreground="White"
+                                                  Height="13"
+                                                  Width="13"
+                                                  Margin="15,0,0,0"/>
+                                        <TextBlock Margin="5,0,0,0"
+                                       FontSize="13"
+                                       Foreground="White"
+                                       Text="{Binding Path=DueDate, StringFormat='{}{0:d}' }"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+            <Border Margin="8"
+                    CornerRadius="12"
+                    Width="240"
+                    Height="220"
+                    Background="#2bb884"
+                    Style="{StaticResource panelControl}">
+                <StackPanel>
+                    <TextBlock Text="Tasks for Priority"
+                               FontSize="30"
+                               Margin="0,0,0,0"
+                               HorizontalAlignment="Center"
+                               Foreground="White"/>
+                    <lvc:PieChart Series="{Binding PriorityTasksCollection}"
+                      LegendLocation="Bottom"
+                                  Width="240"
+                                  Height="140"/>
+                    <TextBlock/>
+                </StackPanel>
+            </Border>
+            <Border Margin="8" 
+                    CornerRadius="12"
+                    Width="370"
+                    Height="220"
+                    Background="#51d53a"
+                    Style="{StaticResource panelControl}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="High Priority Tasks"
+                               FontSize="30"
+                               Margin="15,0,0,0"
+                               Foreground="White"/>
+                    <ListBox
+                        ItemsSource="{Binding Path=HighPriorityTasks}" 
+                        SelectionMode="Extended"
+                        BorderBrush="Transparent"
+                        Background="Transparent" 
+                        d:ItemsSource="{d:SampleData ItemCount=3}"
+                        IsHitTestVisible="False">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="15,0,0,0"
+                                       FontSize="16"
+                                       Foreground="White"
+                                       Text="{Binding Path=Title}">
+                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:IconImage Icon="Clock"
+                                                  Foreground="White"
+                                                  Height="13"
+                                                  Width="13"
+                                                  Margin="15,0,0,0"/>
+                                        <TextBlock Margin="5,0,0,0"
+                                       FontSize="13"
+                                       Foreground="White"
+                                       Text="{Binding Path=DueDate, StringFormat='{}{0:d}' }"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+            <Border Margin="8" 
+                    CornerRadius="12"
+                    Width="370"
+                    Height="220"
+                    Background="#9ae342"
+                    Style="{StaticResource panelControl}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Last Task Added"
+                               FontSize="30"
+                               Margin="15,0,0,0"
+                               Foreground="White"/>
+                    <ListBox
+                        ItemsSource="{Binding Path=LastTaskAdded}" 
+                        SelectionMode="Extended"
+                        BorderBrush="Transparent"
+                        Background="Transparent" 
+                        d:ItemsSource="{d:SampleData ItemCount=3}"
+                        IsHitTestVisible="False">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="15,0,0,0"
+                                       FontSize="16"
+                                       Foreground="White"
+                                       Text="{Binding Path=Title}">
+                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:IconImage Icon="Clock"
+                                                  Foreground="White"
+                                                  Height="13"
+                                                  Width="13"
+                                                  Margin="15,0,0,0"/>
+                                        <TextBlock Margin="5,0,0,0"
+                                       FontSize="13"
+                                       Foreground="White"
+                                       Text="{Binding Path=DueDate, StringFormat='{}{0:d}' }"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+            <Border Margin="8" 
+                    CornerRadius="12"
+                    Width="240"
+                    Height="220"
+                    Background="#e6f14b"
+                    Style="{StaticResource panelControl}">
+                <StackPanel>
+                    <TextBlock Text="Tasks for Status"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,0"
+                               FontSize="30"
+                               Foreground="White"/>
+                    <TextBlock/>
+                    <lvc:PieChart Series="{Binding StatusTasksCollection}"
+                      LegendLocation="Bottom"
+                                  Width="240"
+                                  Height="140"/>
+                </StackPanel>
+            </Border>
+        </WrapPanel>
+    </ScrollViewer>
+</UserControl>
+

@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="AdministradorDeTareas.View.ViewUserAccount"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:AdministradorDeTareas.View"
+             xmlns:viewModel="clr-namespace:AdministradorDeTareas.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Background="Transparent"
+             d:DesignHeight="550" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:ViewModelUserAccount/>
+    </UserControl.DataContext>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto">
+        <Grid Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="190"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Edit Profile"
+                       FontSize="25"
+                       Foreground="white"
+                       FontWeight="Bold"
+                       Margin="10,0,0,0">
+                  <fa:IconImage
+                      Icon="PenToSquare"
+                      Foreground="White"
+                      Margin="15,0,0,0"
+                      Height="25"/>
+            </TextBlock>
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal">
+                <fa:IconImage
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Icon ="UserAlt"
+                Margin="10,10,0,0"
+                Foreground="White"
+                Width="170"/>
+            </StackPanel>
+            <Grid 
+                  Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="63*"/>
+                    <ColumnDefinition Width="337*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                <Border Margin="10,10,0,10" 
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            CornerRadius="10"
+                            Height="60"
+                            Background="#683cb4"
+                            Style="{StaticResource panelControl}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage
+                            Icon="UserLock"
+                            Foreground="White"
+                            Width="40"
+                            Margin="10,0,0,0"/>
+                        <TextBlock
+                            Margin="10,0,10,0"
+                            FontSize="20"
+                            VerticalAlignment="Center"
+                            Foreground="White"
+                            Text="{Binding CurrentUser.UserName, Mode=OneWay }"
+                        />
+                    </StackPanel>
+                </Border>
+                <Border Margin="10,10,0,10" 
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            CornerRadius="10"
+                            Height="60"
+                            Background="#683cb4"
+                            Style="{StaticResource panelControl}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage
+                            Icon="User"
+                            Foreground="White"
+                            Width="40"
+                            Margin="10,0,0,0"/>
+                        <TextBlock
+                        Margin="10,0,10,0"
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                        Foreground="White"
+                        Text="{Binding CurrentUser.FullName, Mode=OneWay }"
+                        />
+                    </StackPanel>
+                </Border>
+                <Border Margin="10,10,0,10"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            CornerRadius="10"
+                            Height="60"
+                            Background="#683cb4"
+                            Style="{StaticResource panelControl}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage
+                            Icon="Envelope"
+                            Foreground="White"
+                            Width="40"
+                            Margin="10,0,0,0"/>
+                        <TextBlock
+                            Margin="10,0,10,0"
+                            FontSize="20"
+                            VerticalAlignment="Center"
+                            Foreground="White"
+                            Text="{Binding CurrentUser.Email, Mode=OneWay }"
+                        />
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <StackPanel 
+                Grid.Row="4"
+                Orientation="Horizontal">
+                <Button
+                    Width="115"
+                    Height="30"
+                    Margin="10,0,0,0"
+                    Command="{Binding ShowEditCredentialsCommand}"
+                    materialDesign:RippleAssist.Feedback="#DD000000"
+                    ToolTip="Edit Profile"
+                    Style="{StaticResource MaterialDesignRaisedSecondaryButton}">
+                <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                    <TextBlock Text="Edit"
+                                   FontSize="15"
+                                   Margin="0,0,5,0"/>
+                    <fa:IconImage
+                            Icon="PenToSquare"
+                            Foreground="White"
+                            Width="18"/>
+                </StackPanel>
+            </Button>
+            <Button
+                    Width="115"
+                    Height="30"
+                    Margin="10,0,0,0"
+                    Command="{Binding ShowChangePasswordCommand}"
+                    materialDesign:RippleAssist.Feedback="#DD000000"
+                    ToolTip="Change Password"
+                    Style="{StaticResource MaterialDesignRaisedSecondaryButton}">
+                <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                    <TextBlock Text="Password"
+                                   FontSize="15"
+                                   Margin="0,0,5,0"/>
+                    <fa:IconImage
+                            Icon="Key"
+                            Foreground="White"
+                            Width="15"/>
+                </StackPanel>
+            </Button>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

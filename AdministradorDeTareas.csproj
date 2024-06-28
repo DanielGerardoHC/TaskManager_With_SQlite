@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Checking.png" />
+    <None Remove="Images\fondo.jpg" />
+    <None Remove="Images\Icon.png" />
+    <None Remove="Images\Key.png" />
+    <None Remove="Images\Menu-Icon.jpg" />
+    <None Remove="Images\User.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="AppResource\BtnResource.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0-preview.4.24267.1" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="AppResource\BtnResource.xaml" />
+    <Resource Include="Images\Checking.png" />
+    <Resource Include="Images\fondo.jpg" />
+    <Resource Include="Images\Icon.png" />
+  </ItemGroup>
+
+</Project>

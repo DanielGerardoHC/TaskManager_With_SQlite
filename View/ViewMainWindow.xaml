@@ -1,0 +1,234 @@
+﻿<Window x:Class="AdministradorDeTareas.ViewMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AdministradorDeTareas.View"
+        xmlns:viewModel="clr-namespace:AdministradorDeTareas.ViewModel"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="ViewMainWindow"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Width="1100"
+        Height="600"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent" 
+        ResizeMode="CanResize"
+        AllowsTransparency="true">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:ViewModelDashBoard}">
+            <local:TaskManagment/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ViewModelEditActions}">
+            <local:ViewEditActions/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ViewModelUserAccount}">
+            <local:ViewUserAccount/>
+        </DataTemplate>
+    </Window.Resources>
+    <Window.DataContext>
+        <viewModel:ViewModelMain/>
+    </Window.DataContext>
+    <Border BorderThickness="4">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border CornerRadius="15,0,0,15"
+                    Grid.Column="0" Grid.RowSpan="2"
+                    >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.7">
+                        <GradientStop Color="#2E207F" Offset="0"/>
+                        <GradientStop Color="#2F2E7F" Offset="0"/>
+                        <GradientStop Color="#2B1380" Offset="1.2"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+            </Border>
+            <Border CornerRadius="0,15,15,0"
+                    Grid.Column="1" Grid.RowSpan="2"
+                    >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.7">
+
+                        <GradientStop Color="#18177f" Offset="1.5"/>
+                        <GradientStop Color="#18177f" Offset="0"/>
+                        <GradientStop Color="#2B1380" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <!--Principal Bar-->
+            <ScrollViewer
+             VerticalScrollBarVisibility="Auto" Grid.RowSpan="2">
+                <StackPanel Grid.Column="0">
+                    <StackPanel
+                    Orientation="Horizontal"
+                    Height="35"
+                    Margin="20,30,0,30">
+                        <Image Source="/Images/icon.png"/>
+                        <TextBlock VerticalAlignment="Center"
+                               FontSize="25"
+                               Margin="10,0,0,0"
+                               Foreground="WhiteSmoke"
+                               FontFamily="Didot">
+                        Task Manager
+                        </TextBlock>
+                    </StackPanel>
+                    <RadioButton Style="{StaticResource menuButton}"                          
+                             Command="{Binding ShowDashBoardCommand}"
+                             HorizontalAlignment="Center"
+                             Width="250"
+                             Checked="RadioButton_Checked">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="HomeAlt" HorizontalAlignment="Left" Foreground="White" Margin="10,0,0,0" Height="30" Width="30"/>
+                            <TextBlock Text="Dashboard" 
+                                   Margin="13,0,0,0" 
+                                   VerticalAlignment="Center" 
+                                   FontSize="15"  
+                                   HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource menuButton}"                          
+                             Command="{Binding ShowEditActionsCommand}"
+                             HorizontalAlignment="Center"
+                             Width="250"
+                            Checked="RadioButton_Checked">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="wandmagicsparkles" HorizontalAlignment="Left" Foreground="White" Margin="10,0,0,0" Height="30" Width="30"/>
+                            <TextBlock Text="Edit Actions"
+                                       Margin="13,0,0,0" 
+                                       VerticalAlignment="Center" 
+                                       FontSize="15"  
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource menuButton}"                          
+                             Command="{Binding ShowViewOptionsCommand}"
+                             HorizontalAlignment="Center"
+                             Width="250"
+                             Checked="RadioButton_Checked">
+
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="UserGear" HorizontalAlignment="Left" Foreground="White" Margin="10,0,0,0" Height="30" Width="30"/>
+                            <TextBlock Text="User Account" 
+                                       Margin="13,0,0,0" 
+                                       VerticalAlignment="Center" 
+                                       FontSize="15"  
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </RadioButton>
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                      Width="35"
+                      Height="35"
+                      Margin="16"
+                      HorizontalAlignment="Left"
+                      Command="{Binding LogOutCommand}"
+                      Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}"
+                      ToolTip="Log Out">
+                            <fa:IconImage
+                                Icon="ArrowAltCircleLeft"
+                                Foreground="White"
+                                Width="28"/>
+                        </Button>
+                        <Button
+                      Width="35"
+                      Height="35"
+                      Margin="16"
+                      HorizontalAlignment="Left"
+                      Command="{Binding OpenGithubProfile}"
+                      Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}"
+                      ToolTip="Hi im Daniel, check my profile in GitHub :D">
+                            <materialDesign:PackIcon
+                           Width="30"
+                           Height="30"
+                           Kind="Github" />
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+            <Border Grid.Column="1" Grid.RowSpan="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel 
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                Cursor="Hand"
+                                MouseEnter="pnlControlBar_MouseEnter">
+                      <Button
+                      Width="20"
+                      Height="20"
+                      Margin="0,5,8,0"
+                      HorizontalAlignment="Left"
+                      Click="btnClose_Click"
+                      Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}"
+                      ToolTip="Boom the App!">
+                            <materialDesign:PackIcon
+                           Width="15"
+                           Height="15"
+                           Kind="Minecraft" />
+                        </Button>
+                        <Button
+                      Width="20"
+                      Height="20"
+                      Margin="0,5,8,0"
+                      HorizontalAlignment="Left"
+                      Click="btnMaximize_Click"
+                      Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}"
+                      ToolTip="Maximize">
+                            <materialDesign:PackIcon
+                           Width="15"
+                           Height="15"
+                           Kind="Maximize" />
+                        </Button>
+                        <Button
+                      Width="20"
+                      Height="20"
+                      Margin="0,5,0,0"
+                      HorizontalAlignment="Left"
+                      Click="btnMinimize_Click"
+                      Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}"
+                      ToolTip="Minimize">
+                            <materialDesign:PackIcon
+                           Width="15"
+                           Height="15"
+                           Kind="Minimize" />
+                        </Button>
+                    </StackPanel>
+                    <TextBlock HorizontalAlignment="Left"
+                               x:Name="txtOpCelected"                             
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               Margin="20,0,0,0"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Text="TaskManager"
+                               FontSize="18"
+                               Foreground="White"
+                               Background="Transparent">
+                    </TextBlock>
+                    <ContentControl 
+                        Content="{Binding CurrentChildView}"
+                                    Grid.Row="2"
+                                    Margin="12"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
