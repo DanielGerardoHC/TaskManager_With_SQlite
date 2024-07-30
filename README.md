@@ -28,7 +28,7 @@ Registrar y editar usuarios.
 
 **ViewModel:** Contiene las clases que manejan la logica de manipulacion y presentacion de datos para ser presentados por las vistas.
 
-# Diagrama entidad relacion
+# Diagrama de relacion
 
 <img src="https://github.com/DanielGerardoHC/TaskManager_With_SQlite/blob/main/TaskManagerDB-Diagram.jpeg" title="TaskManagerDB" alt="TaskManagerDB" width="400" height="355"/> <img>
 
